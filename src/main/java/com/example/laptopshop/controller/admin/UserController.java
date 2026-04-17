@@ -1,4 +1,4 @@
-package com.example.laptopshop.controller;
+package com.example.laptopshop.controller.admin;
 
 import java.util.List;
 
@@ -29,6 +29,8 @@ public class UserController {
 
     @GetMapping("/admin/user")
     public String getUserPage(Model model) {
+        List<User> users = this.userService.getAllUsers();
+        model.addAttribute("users", users);
         return "admin/user/table-user";
     }
 

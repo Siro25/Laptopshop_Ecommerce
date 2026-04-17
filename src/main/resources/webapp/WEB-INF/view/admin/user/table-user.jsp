@@ -17,51 +17,55 @@
             </head>
 
             <body>
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-12 mx-auto d-flex justify-content-between align-items-center">
-                            <h3>Table Users</h3>
-                            <a href="/admin/user/create" class="btn btn-primary">Create User</a>
+                <div class="d-flex">
+                    <!-- Include Sidebar -->
+                    <jsp:include page="../layout/sidebar.jsp" />
+
+                    <!-- Main Content -->
+                    <div class="container mt-5 flex-grow-1">
+                        <div class="row">
+                            <div class="col-12 mx-auto d-flex justify-content-between align-items-center">
+                                <h3>Table Users</h3>
+                                <a href="/admin/user/create" class="btn btn-primary">Create User</a>
+                            </div>
+                            <hr />
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+
+                                        <th>Email</th>
+                                        <th>Full Name</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>nguyenvana@example.com</td>
+                                        <td>Nguyen Van A</td>
+                                        <td>
+                                            <button class="btn btn-success">View</button>
+                                            <button class="btn btn-warning mx-2">Update</button>
+                                            <button class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>nguyenvand@example.com</td>
+                                        <td>Nguyen Van D</td>
+                                        <td>
+                                            <button class="btn btn-success">View</button>
+                                            <button class="btn btn-warning mx-2">Update</button>
+                                            <button class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
                         </div>
-                        <hr />
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-
-                                    <th>Email</th>
-                                    <th>Full Name</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>nguyenvana@example.com</td>
-                                    <td>Nguyen Van A</td>
-                                    <td>
-                                        <button class="btn btn-success">View</button>
-                                        <button class="btn btn-warning mx-2">Update</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>nguyenvand@example.com</td>
-                                    <td>Nguyen Van D</td>
-                                    <td>
-                                        <button class="btn btn-success">View</button>
-                                        <button class="btn btn-warning mx-2">Update</button>
-                                        <button class="btn btn-danger">Delete</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-
                     </div>
-
-                </div>
 
             </body>
 

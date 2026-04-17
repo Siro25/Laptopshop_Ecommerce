@@ -17,33 +17,40 @@
             </head>
 
             <body>
-                <div class="container mt-5">
-                    <div class="row">
-                        <div class="col-md-6 col-12 mx-auto">
-                            <h2 class="mb-4">Create User</h2>
-                            <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
-                                <div class="mb-3">
-                                    <label for="fullName" class="form-label">Full Name</label>
-                                    <form:input type="text" class="form-control" path="fullname" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <form:input type="email" class="form-control" path="email" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <form:input type="password" class="form-control" path="password" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone</label>
-                                    <form:input type="text" class="form-control" path="phone" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="address" class="form-label">Address</label>
-                                    <form:input type="text" class="form-control" path="address" />
-                                </div>
-                                <button type="submit" class="btn btn-primary">Create User</button>
-                            </form:form>
+                <div class="d-flex">
+                    <!-- Include Sidebar -->
+                    <jsp:include page="../layout/sidebar.jsp" />
+
+                    <!-- Main Content -->
+                    <div class="container mt-5 flex-grow-1">
+                        <div class="row">
+                            <div class="col-md-6 col-12 mx-auto">
+                                <h2 class="mb-4">Create User</h2>
+                                <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
+                                    <div class="mb-3">
+                                        <label for="fullName" class="form-label">Full Name</label>
+                                        <form:input type="text" class="form-control" path="fullname" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <form:input type="email" class="form-control" path="email" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <form:input type="password" class="form-control" path="password" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <form:input type="text" class="form-control" path="phone" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="address" class="form-label">Address</label>
+                                        <form:input type="text" class="form-control" path="address" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Create User</button>
+                                </form:form>
+
+                            </div>
 
                         </div>
 

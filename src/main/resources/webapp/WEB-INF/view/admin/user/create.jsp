@@ -25,8 +25,12 @@
                     <div class="container mt-5 flex-grow-1">
                         <div class="row">
                             <div class="col-md-6 col-12 mx-auto">
-                                <h2 class="mb-4">Create User</h2>
-                                <form:form action="/admin/user/create" method="post" modelAttribute="newUser">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h2>Create User</h2>
+                                    <a href="/admin/user" class="btn btn-secondary">Go Back</a>
+                                </div>
+                                <form:form action="/admin/user/create" method="post" modelAttribute="newUser"
+                                    enctype="multipart/form-data">
                                     <div class="mb-3">
                                         <label for="fullName" class="form-label">Full Name</label>
                                         <form:input type="text" class="form-control" path="fullname" />
@@ -47,6 +51,22 @@
                                         <label for="address" class="form-label">Address</label>
                                         <form:input type="text" class="form-control" path="address" />
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Role</label>
+                                        <form:select class="form-select" path="role.name">
+                                            <form:option value="USER">User</form:option>
+                                            <form:option value="ADMIN">Admin</form:option>
+                                        </form:select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="avatarFile" class="form-label">Avatar</label>
+                                        <input class="form-control" type="file" id="avatarFile"
+                                            accept=".png, .jpg, .jpeg" name="hinhAnh" />
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <img style="max-height: 250px; display: none;" alt="avatar preview"
+                                            id="avatarPreview" />
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Create User</button>
                                 </form:form>
 
@@ -57,7 +77,16 @@
                     </div>
 
                 </div>
-
+                <script>
+                    $(document).ready(() => {
+                        const avatarFile = $("#avatarFile");
+                        avatarFile.change(function (e) {
+                            const imgURL = URL.createObjectURL(e.target.files[0]);
+                            $("#avatarPreview").attr("src", imgURL);
+                            $("#avatarPreview").css({ "display": "block" });
+                        });
+                    });
+                </script>
             </body>
 
             </html>

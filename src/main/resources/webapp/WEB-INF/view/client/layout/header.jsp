@@ -1,0 +1,77 @@
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="utf-8">
+            <title>LaptopShop - Homepage</title>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+            <meta content="" name="keywords">
+            <meta content="" name="description">
+
+            <!-- Google Web Fonts -->
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+                rel="stylesheet">
+
+            <!-- Icon Font Stylesheet -->
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+            <!-- Customized Bootstrap Stylesheet -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        </head>
+
+        <body>
+            <!-- Navbar start -->
+            <div class="container-fluid bg-white fixed-top shadow-sm px-0">
+                <div class="container">
+                    <nav class="navbar navbar-light navbar-expand-xl py-3">
+                        <a href="/" class="navbar-brand">
+                            <h1 class="text-primary display-6 mb-0">LaptopShop</h1>
+                        </a>
+                        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarCollapse">
+                            <span class="fa fa-bars text-primary"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <div class="navbar-nav mx-auto text-center">
+                                <a href="/" class="nav-item nav-link active px-3">Home</a>
+                                <a href="/shop" class="nav-item nav-link px-3">Shop</a>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle px-3"
+                                        data-bs-toggle="dropdown">Categories</a>
+                                    <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                        <a href="#" class="dropdown-item">Laptops</a>
+                                        <a href="#" class="dropdown-item">Macbooks</a>
+                                        <a href="#" class="dropdown-item">Accessories</a>
+                                    </div>
+                                </div>
+                                <a href="/contact" class="nav-item nav-link px-3">Contact</a>
+                            </div>
+                            <div class="d-flex justify-content-center m-3 me-0">
+                                <button
+                                    class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
+                                    data-bs-toggle="modal" data-bs-target="#searchModal">
+                                    <i class="fas fa-search text-primary"></i>
+                                </button>
+                                <a href="/cart" class="position-relative me-4 my-auto">
+                                    <i class="fa fa-shopping-bag fa-2x text-primary"></i>
+                                    <span
+                                        class="position-absolute bg-secondary text-dark rounded-circle d-flex align-items-center justify-content-center px-1"
+                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px; font-size: 12px; font-weight: bold;">3</span>
+                                </a>
+                                <a href="/login" class="my-auto">
+                                    <i class="fas fa-user fa-2x text-primary"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- Navbar End -->

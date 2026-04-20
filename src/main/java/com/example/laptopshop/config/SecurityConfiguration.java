@@ -14,4 +14,18 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    // sửa lỗi mã hóa mật khẩu bằng BCrypt khi tạo người dùng mới trong
+    // UserController.java
+    @Bean
+    public org.springframework.security.core.userdetails.UserDetailsService userDetailsService(
+            PasswordEncoder encoder) {
+        org.springframework.security.core.userdetails.UserDetails user = org.springframework.security.core.userdetails.User
+                .builder()
+                .username("si")
+                .password(encoder.encode("12")) // Mã hoá mật khẩu với BCrypt
+                .roles("USER")
+                .build();
+        return new org.springframework.security.provisioning.InMemoryUserDetailsManager(user);
+    }
+
 }

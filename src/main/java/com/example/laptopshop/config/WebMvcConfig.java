@@ -12,6 +12,7 @@ import org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistration;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -53,4 +54,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.viewResolver(viewResolver());
     }
+
+    // @Override
+    // public void addResourceHandlers(ResourceHandlerRegistration registry) {
+    // registry.addResourceHandler("/css/**")
+    // .addResourceLocations("/resources/css/");
+    // registry.addResourceHandler("/js/**")
+    // .addResourceLocations("/resources/js/");
+    // registry.addResourceHandler("/images/**")
+    // .addResourceLocations("/resources/images/");
+
+    // }
 }

@@ -88,19 +88,24 @@
                         ưu đãi.</p>
                 </div>
                 <div class="row g-4">
-                    <!-- Product Item -->
+                    <!-- Product Item 1 -->
                     <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="rounded position-relative border border-secondary">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
                             <div class="p-4">
-                                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid w-100 rounded-top" alt="">
+                                <a href="/product/1">
+                                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                 style="top: 10px; left: 10px;">Macbook</div>
-                            <div class="p-4 rounded-bottom">
-                                <h4>MacBook Pro 14" M3</h4>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/1" class="text-decoration-none text-dark">
+                                    <h4>MacBook Pro 14" M3</h4>
+                                </a>
                                 <p>Chip M3 Pro mạnh mẽ, màn hình Liquid Retina XDR rực rỡ, dung lượng pin bền bỉ.</p>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
                                     <p class="text-dark fs-5 fw-bold mb-0">39.990.000 đ</p>
                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                             class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
@@ -109,19 +114,24 @@
                         </div>
                     </div>
 
-                    <!-- Product Item -->
+                    <!-- Product Item 2 -->
                     <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="rounded position-relative border border-secondary">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
                             <div class="p-4">
-                                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid w-100 rounded-top" alt="">
+                                <a href="/product/2">
+                                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                 style="top: 10px; left: 10px;">Laptop</div>
-                            <div class="p-4 rounded-bottom">
-                                <h4>Dell XPS 15</h4>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/2" class="text-decoration-none text-dark">
+                                    <h4>Dell XPS 15</h4>
+                                </a>
                                 <p>Tuyệt tác laptop doanh nhân, thiết kế vỏ nhôm khối sang trọng, cấu hình đỉnh cao.</p>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
                                     <p class="text-dark fs-5 fw-bold mb-0">45.000.000 đ</p>
                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                             class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
@@ -130,19 +140,24 @@
                         </div>
                     </div>
 
-                    <!-- Product Item -->
+                    <!-- Product Item 3 -->
                     <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="rounded position-relative border border-secondary">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
                             <div class="p-4">
-                                <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid w-100 rounded-top" alt="">
+                                <a href="/product/3">
+                                    <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                 style="top: 10px; left: 10px;">Laptop</div>
-                            <div class="p-4 rounded-bottom">
-                                <h4>ThinkPad X1 Carbon</h4>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/3" class="text-decoration-none text-dark">
+                                    <h4>ThinkPad X1 Carbon</h4>
+                                </a>
                                 <p>Laptop hoàn hảo cho lập trình viên và doanh nhân. Bàn phím tốt nhất thế giới.</p>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
                                     <p class="text-dark fs-5 fw-bold mb-0">35.500.000 đ</p>
                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                             class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
@@ -151,20 +166,129 @@
                         </div>
                     </div>
 
-                    <!-- Product Item -->
+                    <!-- Product Item 4 -->
                     <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="rounded position-relative border border-secondary">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
                             <div class="p-4">
-                                <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
-                                    class="img-fluid w-100 rounded-top" alt="">
+                                <a href="/product/4">
+                                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
                             </div>
                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                 style="top: 10px; left: 10px;">Laptop</div>
-                            <div class="p-4 rounded-bottom">
-                                <h4>Asus ROG Strix</h4>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/4" class="text-decoration-none text-dark">
+                                    <h4>Asus ROG Strix</h4>
+                                </a>
                                 <p>Sức mạnh tối thượng cho game thủ chuyên nghiệp. Tần số quét màn hình 240Hz.</p>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
                                     <p class="text-dark fs-5 fw-bold mb-0">38.200.000 đ</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                            class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 5 -->
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
+                            <div class="p-4">
+                                <a href="/product/5">
+                                    <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                style="top: 10px; left: 10px;">Macbook</div>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/5" class="text-decoration-none text-dark">
+                                    <h4>MacBook Air M2</h4>
+                                </a>
+                                <p>Thiết kế siêu mỏng nhẹ, chip M2 hiệu năng ấn tượng, thời lượng pin cả ngày.</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
+                                    <p class="text-dark fs-5 fw-bold mb-0">27.500.000 đ</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                            class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 6 -->
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
+                            <div class="p-4">
+                                <a href="/product/6">
+                                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                style="top: 10px; left: 10px;">Laptop</div>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/6" class="text-decoration-none text-dark">
+                                    <h4>HP Envy 13</h4>
+                                </a>
+                                <p>Viền màn hình siêu mỏng, bảo mật cao cấp, hiệu suất mượt mà cho công việc.</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
+                                    <p class="text-dark fs-5 fw-bold mb-0">24.900.000 đ</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                            class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 7 -->
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
+                            <div class="p-4">
+                                <a href="/product/7">
+                                    <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                style="top: 10px; left: 10px;">Laptop</div>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/7" class="text-decoration-none text-dark">
+                                    <h4>Lenovo Legion 5</h4>
+                                </a>
+                                <p>Cỗ máy chiến game thực thụ với hệ thống tản nhiệt vượt trội, card rời RTX 4060.</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
+                                    <p class="text-dark fs-5 fw-bold mb-0">31.000.000 đ</p>
+                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
+                                            class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Item 8 -->
+                    <div class="col-md-6 col-lg-4 col-xl-3">
+                        <div class="rounded position-relative border border-secondary h-100 d-flex flex-column">
+                            <div class="p-4">
+                                <a href="/product/8">
+                                    <img src="https://images.unsplash.com/photo-1544731612-de7f96afe55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60"
+                                        class="img-fluid w-100 rounded-top" style="height: 200px; object-fit: cover;"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                style="top: 10px; left: 10px;">Macbook</div>
+                            <div class="p-4 rounded-bottom d-flex flex-column flex-grow-1">
+                                <a href="/product/8" class="text-decoration-none text-dark">
+                                    <h4>MacBook Pro 16" M3 Max</h4>
+                                </a>
+                                <p>Sức mạnh chuyên nghiệp khủng khiếp cho những tác vụ đồ họa chuyên sâu nhất.</p>
+                                <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
+                                    <p class="text-dark fs-5 fw-bold mb-0">79.990.000 đ</p>
                                     <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
                                             class="fa fa-shopping-bag me-2 text-primary"></i> Thêm vào giỏ</a>
                                 </div>

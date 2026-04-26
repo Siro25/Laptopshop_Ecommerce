@@ -30,17 +30,42 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
-                                    <th>Category</th>
+                                    <th>Quantity</th>
+                                    <th>Factory</th>
+                                    <th>Target</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Place product items here -->
-                                <tr>
-                                    <td colspan="5" class="text-center">No products found.</td>
-                                </tr>
+                                <c:forEach var="product" items="${products}">
+                                    <tr>
+                                        <td>${product.id}</td>
+                                        <td>
+                                            <c:if test="${not empty product.image}">
+                                                <img src="/resources/images/product/${product.image}"
+                                                    alt="${product.name}" style="max-height: 80px;" />
+                                            </c:if>
+                                        </td>
+                                        <td>${product.name}</td>
+                                        <td>${product.price}</td>
+                                        <td>${product.quantity}</td>
+                                        <td>${product.factory}</td>
+                                        <td>${product.target}</td>
+                                        <td>
+                                            <button class="btn btn-success">View</button>
+                                            <button class="btn btn-warning mx-2">Update</button>
+                                            <button class="btn btn-danger">Delete</button>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <c:if test="${empty products}">
+                                    <tr>
+                                        <td colspan="8" class="text-center">No products found.</td>
+                                    </tr>
+                                </c:if>
                             </tbody>
                         </table>
                     </div>

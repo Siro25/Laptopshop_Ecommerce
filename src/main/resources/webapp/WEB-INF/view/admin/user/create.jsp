@@ -24,50 +24,58 @@
                     <!-- Main Content -->
                     <div class="container mt-5 flex-grow-1">
                         <div class="row">
-                            <div class="col-md-6 col-12 mx-auto">
+                            <div class="col-lg-9 col-12 mx-auto">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <h2>Create User</h2>
                                     <a href="/admin/user" class="btn btn-secondary">Go Back</a>
                                 </div>
                                 <form:form action="/admin/user/create" method="post" modelAttribute="newUser"
                                     enctype="multipart/form-data">
-                                    <div class="mb-3">
-                                        <label for="fullName" class="form-label">Full Name</label>
-                                        <form:input type="text" class="form-control" path="fullname" />
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="fullName" class="form-label">Full Name</label>
+                                            <form:input type="text" class="form-control" path="fullname" />
+                                            <form:errors path="fullname" cssClass="text-danger small" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <form:input type="email" class="form-control" path="email" />
+                                            <form:errors path="email" cssClass="text-danger small" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="password" class="form-label">Password</label>
+                                            <form:input type="password" class="form-control" path="password" />
+                                            <form:errors path="password" cssClass="text-danger small" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <form:input type="text" class="form-control" path="phone" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="address" class="form-label">Address</label>
+                                            <form:input type="text" class="form-control" path="address" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="role" class="form-label">Role</label>
+                                            <form:select class="form-select" path="role.name">
+                                                <form:option value="USER">User</form:option>
+                                                <form:option value="ADMIN">Admin</form:option>
+                                            </form:select>
+                                            <form:errors path="role.name" cssClass="text-danger small" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="avatarFile" class="form-label">Avatar</label>
+                                            <input class="form-control" type="file" id="avatarFile"
+                                                accept=".png, .jpg, .jpeg" name="hinhAnh" />
+                                        </div>
+                                        <div class="col-md-6 d-flex align-items-end">
+                                            <img style="max-height: 140px; display: none;" alt="avatar preview"
+                                                id="avatarPreview" />
+                                        </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <form:input type="email" class="form-control" path="email" />
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn btn-primary">Create User</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
-                                        <form:input type="password" class="form-control" path="password" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <form:input type="text" class="form-control" path="phone" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="address" class="form-label">Address</label>
-                                        <form:input type="text" class="form-control" path="address" />
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="role" class="form-label">Role</label>
-                                        <form:select class="form-select" path="role.name">
-                                            <form:option value="USER">User</form:option>
-                                            <form:option value="ADMIN">Admin</form:option>
-                                        </form:select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="avatarFile" class="form-label">Avatar</label>
-                                        <input class="form-control" type="file" id="avatarFile"
-                                            accept=".png, .jpg, .jpeg" name="hinhAnh" />
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <img style="max-height: 250px; display: none;" alt="avatar preview"
-                                            id="avatarPreview" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Create User</button>
                                 </form:form>
 
                             </div>

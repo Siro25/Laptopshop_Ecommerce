@@ -23,6 +23,10 @@ public class UserService {
         return this.userRepository.findByEmail(email);
     }
 
+    public boolean checkEmailExists(String email) {
+        return this.userRepository.existsByEmail(email);
+    }
+
     public User handleSaveUser(User user) {
         return this.userRepository.save(user);
     }

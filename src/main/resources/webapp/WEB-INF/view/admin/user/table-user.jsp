@@ -36,30 +36,29 @@
 
                                         <th>Email</th>
                                         <th>Full Name</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>nguyenvana@example.com</td>
-                                        <td>Nguyen Van A</td>
-                                        <td>
-                                            <button class="btn btn-success">View</button>
-                                            <button class="btn btn-warning mx-2">Update</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>nguyenvand@example.com</td>
-                                        <td>Nguyen Van D</td>
-                                        <td>
-                                            <button class="btn btn-success">View</button>
-                                            <button class="btn btn-warning mx-2">Update</button>
-                                            <button class="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
+                                    <c:forEach var="user" items="${users}">
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>${user.email}</td>
+                                            <td>${user.fullname}</td>
+                                            <td>${user.role.name}</td>
+                                            <td>
+                                                <button class="btn btn-success">View</button>
+                                                <button class="btn btn-warning mx-2">Update</button>
+                                                <button class="btn btn-danger">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    <c:if test="${empty users}">
+                                        <tr>
+                                            <td colspan="5" class="text-center">Chưa có người dùng nào</td>
+                                        </tr>
+                                    </c:if>
                                 </tbody>
                             </table>
 

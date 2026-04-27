@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -74,6 +75,85 @@ public class UserController {
         }
 
         this.userService.handleSaveUser(user1);
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("/admin/user/{id}")
+    public String getUserDetailPage(Model model, @PathVariable Long id) {
+        User user = this.userService.getUserById(id);
+        if (user == null) {
+            return "redirect:/admin/user";
+        }
+
+        model.addAttribute("user", user);
+        return "admin/user/detail";
+    }
+
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable Long id) {
+        User user = this.userService.getUserById(id);
+        if (user == null) {
+            return "redirect:/admin/user";
+        }
+
+        model.addAttribute("newUser", user);
+        return "admin/user/delete";
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String postDeleteUserPage(@ModelAttribute("newUser") User user) {
+        this.userService.deleteUser(user.getId());
+        return "redirect:/admin/user";
+    }
+
+    @GetMapping("/admin/user/update/{id}")
+    public String getUpdateUserPage(Model model, @PathVariable Long id) {
+        User currentUser = this.userService.getUserById(id);
+        if (currentUser == null) {
+            return "redirect:/admin/user";
+        }
+
+        if (currentUser.getRole() == null) {
+            currentUser.setRole(new Role());
+        }
+
+        model.addAttribute("newUser", currentUser);
+        return "admin/user/update";
+    }
+
+    @PostMapping("/admin/user/update")
+    public String postUpdateUserPage(@ModelAttribute("newUser") User updateUser,
+            @RequestParam("hinhAnh") MultipartFile file) {
+        User currentUser = this.userService.getUserById(updateUser.getId());
+        if (currentUser == null) {
+            return "redirect:/admin/user";
+        }
+
+        if (!currentUser.getEmail().equals(updateUser.getEmail())
+                && this.userService.checkEmailExists(updateUser.getEmail())) {
+            return "redirect:/admin/user/update/" + updateUser.getId();
+        }
+
+        currentUser.setFullname(updateUser.getFullname());
+        currentUser.setEmail(updateUser.getEmail());
+        currentUser.setPhone(updateUser.getPhone());
+        currentUser.setAddress(updateUser.getAddress());
+
+        if (updateUser.getRole() != null && updateUser.getRole().getName() != null) {
+            currentUser.setRole(this.roleService.getRoleByName(updateUser.getRole().getName()));
+        }
+
+        if (updateUser.getPassword() != null && !updateUser.getPassword().isBlank()) {
+            String hashPassword = this.passwordEncoder.encode(updateUser.getPassword());
+            currentUser.setPassword(hashPassword);
+        }
+
+        if (file != null && !file.isEmpty()) {
+            String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+            currentUser.setAvatar(avatar);
+        }
+
+        this.userService.handleSaveUser(currentUser);
         return "redirect:/admin/user";
     }
 

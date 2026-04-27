@@ -1,5 +1,6 @@
 package com.example.laptopshop.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,6 +22,7 @@ public class Product {
     private double price;
     private String image;
     @NotBlank(message = "Mô tả chi tiết không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT") // >255
     private String detailDesc;
     @NotBlank(message = "Mô tả ngắn không được để trống")
     private String shortDesc;

@@ -1,18 +1,38 @@
 package com.example.laptopshop.controller.client;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.laptopshop.domain.Product;
+import com.example.laptopshop.service.ProductService;
+
 @Controller("clientProductController")
 public class ProductController {
+    private final ProductService productService;
+
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/product/{id}")
     public String getProductDetail(@PathVariable("id") long id, Model model) {
-        // Normally fetch from service: Product product = productService.findById(id);
-        // Here we just pass the ID or mock data to the view for demonstration
-        model.addAttribute("productId", id);
+        Product product = this.productService.getProductById(id).orElse(null);
+        if (product == null) {
+            return "redirect:/";
+        }
+
+        List<Product> relatedProducts = this.productService.getAllProducts()
+                .stream()
+                .filter(item -> !item.getId().equals(product.getId()))
+                .limit(4)
+                .toList();
+
+        model.addAttribute("product", product);
+        model.addAttribute("relatedProducts", relatedProducts);
         return "client/product/detail";
     }
 }

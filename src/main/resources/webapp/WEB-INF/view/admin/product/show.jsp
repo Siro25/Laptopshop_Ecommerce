@@ -30,7 +30,6 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Image</th>
                                     <th>Name</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
@@ -43,21 +42,17 @@
                                 <c:forEach var="product" items="${products}">
                                     <tr>
                                         <td>${product.id}</td>
-                                        <td>
-                                            <c:if test="${not empty product.image}">
-                                                <img src="/resources/images/product/${product.image}"
-                                                    alt="${product.name}" style="max-height: 80px;" />
-                                            </c:if>
-                                        </td>
                                         <td>${product.name}</td>
                                         <td>${product.price}</td>
                                         <td>${product.quantity}</td>
                                         <td>${product.factory}</td>
                                         <td>${product.target}</td>
                                         <td>
-                                            <button class="btn btn-success">View</button>
-                                            <button class="btn btn-warning mx-2">Update</button>
-                                            <button class="btn btn-danger">Delete</button>
+                                            <a href="/admin/product/${product.id}" class="btn btn-success">View</a>
+                                            <a href="/admin/product/update/${product.id}"
+                                                class="btn btn-warning mx-2">Update</a>
+                                            <a href="/admin/product/delete/${product.id}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

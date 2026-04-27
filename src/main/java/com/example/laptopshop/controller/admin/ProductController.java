@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,4 +65,76 @@ public class ProductController {
         this.productService.handleSaveProduct(newProduct);
         return "redirect:/admin/product";
     }
+
+    @GetMapping("/admin/product/delete/{id}")
+    public String getDeleteProductPage(Model model, @PathVariable Long id) {
+        Product product = this.productService.getProductById(id).orElse(null);
+        if (product == null) {
+            return "redirect:/admin/product";
+        }
+
+        model.addAttribute("newProduct", product);
+        return "admin/product/delete";
+    }
+
+    @PostMapping("/admin/product/delete")
+    public String postDeleteProduct(@ModelAttribute("newProduct") Product pr) {
+        this.productService.deleteProduct(pr.getId());
+        return "redirect:/admin/product";
+    }
+
+    @GetMapping("/admin/product/{id}")
+    public String getProductDetailPage(Model model, @PathVariable Long id) {
+        Product product = this.productService.getProductById(id).orElse(null);
+        if (product == null) {
+            return "redirect:/admin/product";
+        }
+
+        model.addAttribute("product", product);
+        model.addAttribute("id", id);
+        return "admin/product/detail";
+    }
+
+    @GetMapping("/admin/product/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable Long id) {
+        Product currentProduct = this.productService.getProductById(id).orElse(null);
+        if (currentProduct == null) {
+            return "redirect:/admin/product";
+        }
+
+        model.addAttribute("newProduct", currentProduct);
+        return "admin/product/update";
+    }
+
+    @PostMapping("/admin/product/update")
+    public String updateProductPage(
+            @ModelAttribute("newProduct") @Valid Product updatedProduct,
+            BindingResult updatedProductBindingResult,
+            @RequestParam("hinhAnh") MultipartFile file) {
+        Product currentProduct = this.productService.getProductById(updatedProduct.getId()).orElse(null);
+        if (currentProduct == null) {
+            return "redirect:/admin/product";
+        }
+
+        if (updatedProductBindingResult.hasErrors()) {
+            return "admin/product/update";
+        }
+
+        if (file != null && !file.isEmpty()) {
+            String contentType = file.getContentType();
+            if (contentType == null || !contentType.startsWith("image/")) {
+                updatedProductBindingResult.rejectValue("image", "error.newProduct", "File tải lên phải là ảnh");
+                return "admin/product/update";
+            }
+
+            String imageName = this.uploadService.handleSaveUploadFile(file, "product");
+            updatedProduct.setImage(imageName);
+        } else {
+            updatedProduct.setImage(currentProduct.getImage());
+        }
+
+        this.productService.handleSaveProduct(updatedProduct);
+        return "redirect:/admin/product";
+    }
+
 }

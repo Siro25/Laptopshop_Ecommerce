@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.laptopshop.domain.User;
+import com.example.laptopshop.domain.dto.RegisterDTO;
 import com.example.laptopshop.repository.UserRepository;
 
 @Service
@@ -37,5 +38,13 @@ public class UserService {
 
     public User handleSaveUser(User user) {
         return this.userRepository.save(user);
+    }
+
+    public User registerDTOtoUser(RegisterDTO registerDTO) {
+        User user = new User();
+        user.setFullname(registerDTO.getFirstName() + " " + registerDTO.getLastName());
+        user.setEmail(registerDTO.getEmail());
+        user.setPassword(registerDTO.getPassword());
+        return user;
     }
 }

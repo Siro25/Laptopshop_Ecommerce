@@ -50,6 +50,11 @@ public class HomePageController {
     @PostMapping("/register")
     public String handleRegister(@Valid @ModelAttribute("registerUser") RegisterDTO registerDTO,
             BindingResult bindingResult) {
+        if (registerDTO.getEmail() != null && !registerDTO.getEmail().isBlank()
+                && this.userService.checkEmailExists(registerDTO.getEmail())) {
+            bindingResult.rejectValue("email", "EmailExists", "Email đã tồn tại.");
+        }
+
         if (registerDTO.getPassword() != null && registerDTO.getConfirmPassword() != null
                 && !registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "PasswordMismatch", "Mật khẩu nhập lại không khớp.");

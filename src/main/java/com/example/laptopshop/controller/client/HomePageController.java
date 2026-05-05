@@ -75,7 +75,7 @@ public class HomePageController {
 
     @GetMapping("/login")
     public String getLoginPage(Model model) {
-        return "/login";
+        return "client/auth/login";
     }
 
 }

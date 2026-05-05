@@ -137,6 +137,7 @@
                         </div>
 
                         <form:form action="/register" method="post" modelAttribute="registerUser" class="mt-4">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Họ</label>

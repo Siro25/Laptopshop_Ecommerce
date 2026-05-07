@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
@@ -17,18 +18,22 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http,
+            AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**", "/images/**", "/resources/**")
+                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**",
+                        "/images/**", "/resources/**")
                 .permitAll()
-                .requestMatchers("/product/**", "/admin/**")
+                .requestMatchers("/admin/**")
+                .hasRole("ADMIN")
+                .requestMatchers("/product/**")
                 .authenticated()
                 .anyRequest()
                 .permitAll())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(authenticationSuccessHandler)
                         .failureUrl("/login?error")
                         .permitAll())
                 .logout(logout -> logout
@@ -37,20 +42,6 @@ public class SecurityConfiguration {
                         .permitAll());
 
         return http.build();
-    }
-
-    // sửa lỗi mã hóa mật khẩu bằng BCrypt khi tạo người dùng mới trong
-    // UserController.java
-    @Bean
-    public org.springframework.security.core.userdetails.UserDetailsService userDetailsService(
-            PasswordEncoder encoder) {
-        org.springframework.security.core.userdetails.UserDetails user = org.springframework.security.core.userdetails.User
-                .builder()
-                .username("si")
-                .password(encoder.encode("12")) // Mã hoá mật khẩu với BCrypt
-                .roles("USER")
-                .build();
-        return new org.springframework.security.provisioning.InMemoryUserDetailsManager(user);
     }
 
 }

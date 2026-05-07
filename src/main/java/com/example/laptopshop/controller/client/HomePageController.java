@@ -68,7 +68,7 @@ public class HomePageController {
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
 
         user.setPassword(hashPassword);
-        user.setRole(this.roleService.getRoleByName("USER"));
+        user.setRole(this.roleService.getOrCreateRoleByName("USER"));
         this.userService.handleSaveUser(user);
         return "redirect:/login";
     }

@@ -71,7 +71,7 @@ public class UserController {
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         user1.setAvatar(avatar);
         if (user1.getRole() != null && user1.getRole().getName() != null) {
-            user1.setRole(this.roleService.getRoleByName(user1.getRole().getName()));
+            user1.setRole(this.roleService.getOrCreateRoleByName(user1.getRole().getName()));
         }
 
         this.userService.handleSaveUser(user1);
@@ -140,7 +140,7 @@ public class UserController {
         currentUser.setAddress(updateUser.getAddress());
 
         if (updateUser.getRole() != null && updateUser.getRole().getName() != null) {
-            currentUser.setRole(this.roleService.getRoleByName(updateUser.getRole().getName()));
+            currentUser.setRole(this.roleService.getOrCreateRoleByName(updateUser.getRole().getName()));
         }
 
         if (updateUser.getPassword() != null && !updateUser.getPassword().isBlank()) {

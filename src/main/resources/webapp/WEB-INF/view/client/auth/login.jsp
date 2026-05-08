@@ -128,11 +128,11 @@
                 <div class="auth-card">
                     <div class="text-center">
                         <div class="auth-switch">
-                            <a class="auth-switch__item" href="/register">Dang ky</a>
-                            <a class="auth-switch__item is-active" href="/login" aria-current="page">Dang nhap</a>
+                            <a class="auth-switch__item" href="/register">Đăng ký</a>
+                            <a class="auth-switch__item is-active" href="/login" aria-current="page">Đăng nhập</a>
                         </div>
-                        <h2 class="fw-bold mb-2">Dang nhap LaptopShop</h2>
-                        <p class="auth-subtitle mb-0">Chao mung ban tro lai.</p>
+                        <h2 class="fw-bold mb-2">Đăng nhập LaptopShop</h2>
+                        <p class="auth-subtitle mb-0">Chào mừng bạn trở lại.</p>
                     </div>
 
                     <form action="/login" method="post" class="mt-4">
@@ -151,8 +151,8 @@
                         </div>
 
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-3 mt-4">
-                            <button type="submit" class="btn btn-auth px-5">Dang nhap</button>
-                            <span class="auth-note">Chua co tai khoan? <a href="/register">Dang ky</a></span>
+                            <button type="submit" class="btn btn-auth px-5">Đăng nhập</button>
+                            <span class="auth-note">Chưa có tài khoản? <a href="/register">Đăng ký</a></span>
                         </div>
                     </form>
                 </div>

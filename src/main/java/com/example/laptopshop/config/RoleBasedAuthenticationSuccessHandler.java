@@ -18,9 +18,15 @@ public class RoleBasedAuthenticationSuccessHandler implements AuthenticationSucc
             Authentication authentication) throws IOException, ServletException {
         boolean isAdmin = authentication.getAuthorities().stream()
                 .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority()));
+        boolean isUser = authentication.getAuthorities().stream()
+                .anyMatch(authority -> "ROLE_USER".equals(authority.getAuthority()));
 
         if (isAdmin) {
             response.sendRedirect("/admin/dashboard");
+            return;
+        }
+        if (isUser) {
+            response.sendRedirect("/");
             return;
         }
 

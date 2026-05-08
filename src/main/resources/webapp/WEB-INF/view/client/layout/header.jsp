@@ -60,15 +60,51 @@
                                     data-bs-toggle="modal" data-bs-target="#searchModal">
                                     <i class="fas fa-search text-primary"></i>
                                 </button>
-                                <a href="/cart" class="position-relative me-4 my-auto">
-                                    <i class="fa fa-shopping-bag fa-2x text-primary"></i>
-                                    <span
-                                        class="position-absolute bg-secondary text-dark rounded-circle d-flex align-items-center justify-content-center px-1"
-                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px; font-size: 12px; font-weight: bold;">3</span>
-                                </a>
-                                <a href="/login" class="my-auto">
-                                    <i class="fas fa-user fa-2x text-primary"></i>
-                                </a>
+                                <c:choose>
+                                    <c:when test="${not empty currentUser}">
+                                        <a href="/cart" class="position-relative me-4 my-auto">
+                                            <i class="fa fa-shopping-bag fa-2x text-primary"></i>
+                                            <span
+                                                class="position-absolute bg-secondary text-dark rounded-circle d-flex align-items-center justify-content-center px-1"
+                                                style="top: -5px; left: 15px; height: 20px; min-width: 20px; font-size: 12px; font-weight: bold;">3</span>
+                                        </a>
+                                        <div class="nav-item dropdown">
+                                            <a href="#" class="nav-link dropdown-toggle p-0 my-auto"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-user fa-2x text-primary"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end m-0 p-2">
+                                                <div class="px-3 py-2 border-bottom text-center">
+                                                    <c:choose>
+                                                        <c:when test="${not empty currentUser.avatar}">
+                                                            <img src="/resources/images/avatar/${currentUser.avatar}"
+                                                                alt="avatar" class="rounded-circle"
+                                                                style="width: 48px; height: 48px; object-fit: cover;" />
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center"
+                                                                style="width: 48px; height: 48px;">
+                                                                <i class="fas fa-user text-primary"></i>
+                                                            </div>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                                <a href="/account" class="dropdown-item">Quản lý tài khoản</a>
+                                                <a href="/orders" class="dropdown-item">Lịch sử mua</a>
+                                                <div class="dropdown-divider"></div>
+                                                <form method="post" action="/logout" class="m-0">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <button type="submit" class="dropdown-item text-danger">Đăng
+                                                        xuất</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/login" class="my-auto nav-link text-primary fw-semibold">Đăng nhập</a>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </nav>

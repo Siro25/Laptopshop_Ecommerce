@@ -24,6 +24,10 @@ public class UserService {
         return this.userRepository.findByEmail(email);
     }
 
+    public User getUserByEmail(String email) {
+        return this.userRepository.findFirstByEmail(email).orElse(null);
+    }
+
     public boolean checkEmailExists(String email) {
         return this.userRepository.existsByEmail(email);
     }

@@ -12,36 +12,44 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http,
-            AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
-        http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/login", "/register", "/css/**", "/js/**",
-                        "/images/**", "/resources/**")
-                .permitAll()
-                .requestMatchers("/admin/**")
-                .hasRole("ADMIN")
-                .requestMatchers("/product/**")
-                .authenticated()
-                .anyRequest()
-                .permitAll())
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .successHandler(authenticationSuccessHandler)
-                        .failureUrl("/login?error")
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
-                        .permitAll());
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                        AuthenticationSuccessHandler authenticationSuccessHandler) throws Exception {
+                http.authorizeHttpRequests(auth -> auth
+                                .requestMatchers("/", "/login", "/register", "/access-denied", "/css/**", "/js/**",
+                                                "/images/**", "/resources/**")
+                                .permitAll()
+                                .requestMatchers("/account/**")
+                                .authenticated()
+                                .requestMatchers("/admin/**")
+                                .hasRole("ADMIN")
+                                .requestMatchers("/product/**")
+                                .authenticated()
+                                .anyRequest()
+                                .permitAll())
+                                .formLogin(form -> form
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/login")
+                                                .successHandler(authenticationSuccessHandler)
+                                                .failureUrl("/login?error")
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/")
+                                                .invalidateHttpSession(true)
+                                                .clearAuthentication(true)
+                                                .deleteCookies("JSESSIONID")
+                                                .permitAll())
 
-        return http.build();
-    }
+                                .exceptionHandling(exception -> exception
+                                                .accessDeniedPage("/access-denied"));
+
+                return http.build();
+        }
 
 }

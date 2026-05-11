@@ -270,9 +270,15 @@
                                                         groupingUsed="true" />đ
                                                 </span>
                                             </div>
-                                            <button class="btn btn-add-cart rounded-pill py-2">
-                                                <i class="fa fa-shopping-cart me-2"></i> Thêm giỏ hàng
-                                            </button>
+                                            <form action="<c:url value='/cart/add'/>" method="post">
+                                                <input type="hidden" name="productId" value="${product.id}" />
+                                                <input type="hidden" name="quantity" value="1" />
+                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                    value="${_csrf.token}" />
+                                                <button type="submit" class="btn btn-add-cart rounded-pill py-2">
+                                                    <i class="fa fa-shopping-cart me-2"></i> Thêm giỏ hàng
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

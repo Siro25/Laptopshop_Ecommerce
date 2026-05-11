@@ -92,31 +92,37 @@
                                     <div class="text-muted">Chi con ${product.quantity} san pham trong kho.</div>
                                 </div>
 
-                                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                <form action="<c:url value='/cart/add'/>" method="post"
+                                    class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                    <input type="hidden" name="productId" value="${product.id}" />
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div>
                                         <div class="text-muted small mb-2">So luong</div>
                                         <div class="input-group quantity" style="width: 120px;">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-minus rounded-circle bg-light border">
                                                     <i class="fa fa-minus"></i>
                                                 </button>
                                             </div>
-                                            <input type="text" class="form-control form-control-sm text-center border-0"
-                                                value="1">
+                                            <input type="number" name="quantity"
+                                                class="form-control form-control-sm text-center border-0" value="1"
+                                                min="1" max="${product.quantity}">
                                             <div class="input-group-btn">
-                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-plus rounded-circle bg-light border">
                                                     <i class="fa fa-plus"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="d-flex flex-wrap gap-2">
-                                        <a href="#" class="btn btn-primary rounded-pill px-4">
+                                        <button type="submit" class="btn btn-primary rounded-pill px-4">
                                             <i class="fa fa-shopping-cart me-2"></i> Add to Cart
-                                        </a>
+                                        </button>
                                         <a href="#" class="btn btn-dark rounded-pill px-4">Buy Now</a>
                                     </div>
-                                </div>
+                                </form>
 
                                 <div class="row g-3">
                                     <div class="col-sm-4">

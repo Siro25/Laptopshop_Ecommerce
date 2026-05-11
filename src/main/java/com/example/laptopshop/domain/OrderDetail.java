@@ -1,6 +1,5 @@
 package com.example.laptopshop.domain;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -56,6 +55,14 @@ public class OrderDetail {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

@@ -14,10 +14,13 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "orders")
 public class Order {
+    public static final String STATUS_CART = "CART";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private double totalPrice;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -41,6 +44,30 @@ public class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
     @Override

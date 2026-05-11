@@ -64,9 +64,11 @@
                                     <c:when test="${not empty currentUser}">
                                         <a href="/cart" class="position-relative me-4 my-auto">
                                             <i class="fa fa-shopping-bag fa-2x text-primary"></i>
-                                            <span
-                                                class="position-absolute bg-secondary text-dark rounded-circle d-flex align-items-center justify-content-center px-1"
-                                                style="top: -5px; left: 15px; height: 20px; min-width: 20px; font-size: 12px; font-weight: bold;">3</span>
+                                            <c:if test="${cartItemCount > 0}">
+                                                <span
+                                                    class="position-absolute bg-secondary text-dark rounded-circle d-flex align-items-center justify-content-center px-1"
+                                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px; font-size: 12px; font-weight: bold;">${cartItemCount}</span>
+                                            </c:if>
                                         </a>
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle p-0 my-auto"
@@ -76,8 +78,8 @@
                                             <div class="dropdown-menu dropdown-menu-end m-0 p-2">
                                                 <div class="px-3 py-2 border-bottom text-center">
                                                     <c:choose>
-                                                        <c:when test="${not empty currentUser.avatar}">
-                                                            <img src="/resources/images/avatar/${currentUser.avatar}"
+                                                        <c:when test="${not empty sessionScope.avatar}">
+                                                            <img src="/resources/images/avatar/${sessionScope.avatar}"
                                                                 alt="avatar" class="rounded-circle"
                                                                 style="width: 48px; height: 48px; object-fit: cover;" />
                                                         </c:when>
@@ -88,6 +90,9 @@
                                                             </div>
                                                         </c:otherwise>
                                                     </c:choose>
+                                                    <c:if test="${not empty sessionScope.fullName}">
+                                                        <div class="mt-2 fw-semibold">${sessionScope.fullName}</div>
+                                                    </c:if>
                                                 </div>
                                                 <a href="/account" class="dropdown-item">Quản lý tài khoản</a>
                                                 <a href="/orders" class="dropdown-item">Lịch sử mua</a>

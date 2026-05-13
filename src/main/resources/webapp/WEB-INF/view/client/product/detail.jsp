@@ -4,6 +4,15 @@
 
             <jsp:include page="../layout/header.jsp" />
 
+            <div class="container" style="margin-top: 110px;">
+                <c:if test="${not empty cartMessage}">
+                    <div class="alert alert-success">${cartMessage}</div>
+                </c:if>
+                <c:if test="${not empty cartError}">
+                    <div class="alert alert-danger">${cartError}</div>
+                </c:if>
+            </div>
+
             <!-- Single Product Start -->
             <div class="container-fluid mt-5 py-5 bg-light">
                 <div class="container py-4">
@@ -95,6 +104,7 @@
                                 <form action="<c:url value='/cart/add'/>" method="post"
                                     class="d-flex flex-wrap align-items-center gap-3 mb-4">
                                     <input type="hidden" name="productId" value="${product.id}" />
+                                    <input type="hidden" name="redirectUrl" value="/product/${product.id}" />
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div>
                                         <div class="text-muted small mb-2">So luong</div>

@@ -102,6 +102,34 @@ public class CartService {
         refreshCartTotal(cart);
     }
 
+    @Transactional
+    public void updateItemQuantity(User user, long orderDetailId, long delta) {
+        if (user == null || delta == 0) {
+            return;
+        }
+
+        Order cart = getCart(user);
+        if (cart == null) {
+            return;
+        }
+
+        OrderDetail detail = orderDetailRepository.findById(orderDetailId).orElse(null);
+        if (detail == null || detail.getOrder() == null
+                || !detail.getOrder().getId().equals(cart.getId())) {
+            return;
+        }
+
+        long newQuantity = detail.getQuantity() + delta;
+        if (newQuantity < 1) {
+            newQuantity = 1;
+        }
+
+        detail.setQuantity(newQuantity);
+        orderDetailRepository.save(detail);
+
+        refreshCartTotal(cart);
+    }
+
     private Order getOrCreateCart(User user) {
         Order cart = getCart(user);
         if (cart != null) {

@@ -169,6 +169,15 @@
                 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
                 rel="stylesheet">
 
+            <div class="container" style="margin-top: 110px;">
+                <c:if test="${not empty cartMessage}">
+                    <div class="alert alert-success">${cartMessage}</div>
+                </c:if>
+                <c:if test="${not empty cartError}">
+                    <div class="alert alert-danger">${cartError}</div>
+                </c:if>
+            </div>
+
             <!-- Hero Start -->
             <div class="container-fluid hero-banner mb-5">
                 <div class="container">
@@ -273,6 +282,7 @@
                                             <form action="<c:url value='/cart/add'/>" method="post">
                                                 <input type="hidden" name="productId" value="${product.id}" />
                                                 <input type="hidden" name="quantity" value="1" />
+                                                <input type="hidden" name="redirectUrl" value="/" />
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
                                                 <button type="submit" class="btn btn-add-cart rounded-pill py-2">

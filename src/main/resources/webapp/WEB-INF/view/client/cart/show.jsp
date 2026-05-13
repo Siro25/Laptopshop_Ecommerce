@@ -47,14 +47,48 @@
                                                             alt="${item.product.name}">
                                                     </td>
                                                     <td>
-                                                        <div class="fw-semibold">${item.product.name}</div>
+                                                        <a href="<c:url value='/product/${item.product.id}'/>"
+                                                            class="fw-semibold text-decoration-none text-dark">
+                                                            ${item.product.name}
+                                                        </a>
                                                         <div class="text-muted small">${item.product.factory}</div>
                                                     </td>
                                                     <td class="text-end">
                                                         <fmt:formatNumber value="${item.price}" type="number"
                                                             groupingUsed="true" /> đ
                                                     </td>
-                                                    <td class="text-center">${item.quantity}</td>
+                                                    <td class="text-center">
+                                                        <div
+                                                            class="d-inline-flex align-items-center justify-content-center gap-2">
+                                                            <form action="<c:url value='/cart/update-quantity'/>"
+                                                                method="post" class="m-0">
+                                                                <input type="hidden" name="orderDetailId"
+                                                                    value="${item.id}" />
+                                                                <input type="hidden" name="delta" value="-1" />
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}" />
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-outline-secondary rounded-circle"
+                                                                    aria-label="Giảm số lượng">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </form>
+                                                            <span class="fw-semibold">${item.quantity}</span>
+                                                            <form action="<c:url value='/cart/update-quantity'/>"
+                                                                method="post" class="m-0">
+                                                                <input type="hidden" name="orderDetailId"
+                                                                    value="${item.id}" />
+                                                                <input type="hidden" name="delta" value="1" />
+                                                                <input type="hidden" name="${_csrf.parameterName}"
+                                                                    value="${_csrf.token}" />
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-outline-secondary rounded-circle"
+                                                                    aria-label="Tăng số lượng">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
                                                     <td class="text-end fw-semibold text-primary">
                                                         <fmt:formatNumber value="${item.price * item.quantity}"
                                                             type="number" groupingUsed="true" /> đ
@@ -78,14 +112,40 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-end mt-3">
-                                <div class="bg-white rounded-4 shadow-sm p-3 p-lg-4">
-                                    <div class="d-flex align-items-center justify-content-between gap-3">
-                                        <span class="text-muted">Tổng cộng</span>
-                                        <span class="fw-bold text-primary">
-                                            <fmt:formatNumber value="${cartTotal}" type="number" groupingUsed="true" />
-                                            đ
-                                        </span>
+                            <c:set var="shippingFee" value="0" />
+                            <c:set var="orderTotal" value="${cartTotal + shippingFee}" />
+
+                            <div class="row justify-content-end mt-4">
+                                <div class="col-12 col-md-7 col-lg-5">
+                                    <div class="bg-white rounded-4 shadow-sm p-3 p-lg-4">
+                                        <h5 class="fw-bold mb-3">Thông Tin Đơn Hàng</h5>
+                                        <div
+                                            class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <span class="text-muted">Tạm tính</span>
+                                            <span class="fw-semibold">
+                                                <fmt:formatNumber value="${cartTotal}" type="number"
+                                                    groupingUsed="true" /> đ
+                                            </span>
+                                        </div>
+                                        <div
+                                            class="d-flex align-items-center justify-content-between py-2 border-bottom">
+                                            <span class="text-muted">Phí vận chuyển</span>
+                                            <span class="fw-semibold">
+                                                <fmt:formatNumber value="${shippingFee}" type="number"
+                                                    groupingUsed="true" /> đ
+                                            </span>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between pt-3">
+                                            <span class="fw-semibold">Tổng số tiền</span>
+                                            <span class="fw-bold text-primary">
+                                                <fmt:formatNumber value="${orderTotal}" type="number"
+                                                    groupingUsed="true" /> đ
+                                            </span>
+                                        </div>
+                                        <a href="<c:url value='/cart/checkout'/>"
+                                            class="btn btn-primary rounded-pill w-100 mt-3">
+                                            Thanh toán
+                                        </a>
                                     </div>
                                 </div>
                             </div>

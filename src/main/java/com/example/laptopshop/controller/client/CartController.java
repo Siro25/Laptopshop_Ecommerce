@@ -85,9 +85,61 @@ public class CartController {
     }
 
     @GetMapping("/checkout")
-    public String checkout(RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("cartError", "Chức năng thanh toán đang được phát triển.");
-        return "redirect:/cart";
+    public String checkout(Model model, Authentication authentication, RedirectAttributes redirectAttributes) {
+        User user = userService.getUserByEmail(authentication.getName());
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        List<OrderDetail> cartItems = cartService.getCartItems(user);
+        if (cartItems.isEmpty()) {
+            redirectAttributes.addFlashAttribute("cartError", "Giỏ hàng của bạn đang trống.");
+            return "redirect:/cart";
+        }
+
+        double cartTotal = cartItems.stream()
+                .mapToDouble(item -> item.getPrice() * item.getQuantity())
+                .sum();
+        double shippingFee = 0;
+        double orderTotal = cartTotal + shippingFee;
+
+        model.addAttribute("cartItems", cartItems);
+        model.addAttribute("cartTotal", cartTotal);
+        model.addAttribute("shippingFee", shippingFee);
+        model.addAttribute("orderTotal", orderTotal);
+        return "client/cart/checkout";
+    }
+
+    @PostMapping("/checkout")
+    public String submitCheckout(@RequestParam("fullname") String fullname,
+            @RequestParam("phone") String phone,
+            @RequestParam("address") String address,
+            Authentication authentication,
+            RedirectAttributes redirectAttributes) {
+        User user = userService.getUserByEmail(authentication.getName());
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        List<OrderDetail> cartItems = cartService.getCartItems(user);
+        if (cartItems.isEmpty()) {
+            redirectAttributes.addFlashAttribute("cartError", "Giỏ hàng của bạn đang trống.");
+            return "redirect:/cart";
+        }
+
+        if (fullname != null && !fullname.isBlank()) {
+            user.setFullname(fullname.trim());
+        }
+        if (phone != null && !phone.isBlank()) {
+            user.setPhone(phone.trim());
+        }
+        if (address != null && !address.isBlank()) {
+            user.setAddress(address.trim());
+        }
+
+        userService.handleSaveUser(user);
+        redirectAttributes.addFlashAttribute("checkoutMessage", "Da ghi nhan thong tin nhan hang.");
+        return "redirect:/cart/checkout";
     }
 
     @PostMapping("/remove")

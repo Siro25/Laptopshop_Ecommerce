@@ -15,8 +15,28 @@
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link
-                href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
                 rel="stylesheet">
+
+            <style>
+                :root {
+                    --font-heading: 'Poppins', sans-serif;
+                    --font-body: 'Inter', sans-serif;
+                }
+
+                body {
+                    font-family: var(--font-body);
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5,
+                h6 {
+                    font-family: var(--font-heading);
+                }
+            </style>
 
             <!-- Icon Font Stylesheet -->
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />

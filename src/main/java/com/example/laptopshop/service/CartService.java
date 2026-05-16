@@ -130,6 +130,30 @@ public class CartService {
         refreshCartTotal(cart);
     }
 
+    @Transactional
+    public Order placeOrder(User user, String fullname, String phone, String address) {
+        if (user == null) {
+            return null;
+        }
+
+        Order cart = getCart(user);
+        if (cart == null) {
+            return null;
+        }
+
+        if (orderDetailRepository.findByOrder(cart).isEmpty()) {
+            return null;
+        }
+
+        cart.setReceiverName(normalizeReceiverValue(fullname, user.getFullname()));
+        cart.setReceiverPhone(normalizeReceiverValue(phone, user.getPhone()));
+        cart.setShippingAddress(normalizeReceiverValue(address, user.getAddress()));
+        cart.setStatus(Order.STATUS_PENDING);
+
+        refreshCartTotal(cart);
+        return cart;
+    }
+
     private Order getOrCreateCart(User user) {
         Order cart = getCart(user);
         if (cart != null) {
@@ -150,5 +174,17 @@ public class CartService {
                 .sum();
         cart.setTotalPrice(total);
         orderRepository.save(cart);
+    }
+
+    private String normalizeReceiverValue(String value, String fallback) {
+        if (value != null && !value.isBlank()) {
+            return value.trim();
+        }
+
+        if (fallback != null && !fallback.isBlank()) {
+            return fallback.trim();
+        }
+
+        return null;
     }
 }

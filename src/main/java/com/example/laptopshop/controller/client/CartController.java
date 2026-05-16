@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.net.URI;
 
 import com.example.laptopshop.domain.OrderDetail;
+import com.example.laptopshop.domain.Order;
 import com.example.laptopshop.domain.User;
 import com.example.laptopshop.service.CartService;
 import com.example.laptopshop.service.UserService;
@@ -127,6 +128,13 @@ public class CartController {
             return "redirect:/cart";
         }
 
+        if (fullname == null || fullname.isBlank()
+                || phone == null || phone.isBlank()
+                || address == null || address.isBlank()) {
+            redirectAttributes.addFlashAttribute("checkoutError", "Vui lòng nhập đầy đủ thông tin nhận hàng.");
+            return "redirect:/cart/checkout";
+        }
+
         if (fullname != null && !fullname.isBlank()) {
             user.setFullname(fullname.trim());
         }
@@ -138,8 +146,15 @@ public class CartController {
         }
 
         userService.handleSaveUser(user);
-        redirectAttributes.addFlashAttribute("checkoutMessage", "Da ghi nhan thong tin nhan hang.");
-        return "redirect:/cart/checkout";
+        Order placedOrder = cartService.placeOrder(user, fullname, phone, address);
+        if (placedOrder == null) {
+            redirectAttributes.addFlashAttribute("checkoutError", "Không thể tạo đơn hàng. Vui lòng thử lại.");
+            return "redirect:/cart/checkout";
+        }
+
+        redirectAttributes.addFlashAttribute("cartMessage",
+                "Da ghi nhan thong tin nhan hang va tao don hang.");
+        return "redirect:/cart";
     }
 
     @PostMapping("/remove")
